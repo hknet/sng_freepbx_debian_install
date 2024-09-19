@@ -960,9 +960,9 @@ if [ ! -f /proc/net/if_inet6 ]; then
 	sed -i -e "s|^TFTP_OPTIONS=\"--secure\"$|TFTP_OPTIONS=\"--secure --ipv4\"|" /etc/default/tftpd-hpa
 	sed -i -e "s|^DAEMON_OPTS=\"-F 1\"$|DAEMON_OPTS=\"-F 1 -4\"|" /etc/default/chrony
 fi
-# Start the tftp & chrony daemons
-systemctl unmask tftpd-hpa.service chrony.service
-systemctl start tftpd-hpa.service chrony.service
+# Start the tftp daemon - chrony removed for container setups (LXC)
+systemctl unmask tftpd-hpa.service
+systemctl start tftpd-hpa.service
 
 # Creating asterisk sound directory
 mkdir -p /var/lib/asterisk/sounds
